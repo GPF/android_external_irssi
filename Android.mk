@@ -188,5 +188,5 @@ REQUIRE_MODULE += libglib_irc_static libncurses
 
 include $(BUILD_EXECUTABLE)
 
-include $(call all-makefiles-under,$(LOCAL_PATH))
+include $(call all-makefiles-under,$(LOCAL_PATH)/src/glib)
 
