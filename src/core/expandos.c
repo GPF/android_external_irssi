@@ -26,7 +26,8 @@
 #include "settings.h"
 #include "commands.h"
 #include "misc.h"
-#include "irssi-version.h"
+//#include "irssi-version.h"
+#include "glib/config.h"
 
 #include "servers.h"
 #include "channels.h"
