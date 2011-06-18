@@ -27,6 +27,8 @@
 #include "lib-config/iconfig.h"
 #include "settings.h"
 
+#include "glib.h"
+
 #include "completion.h"
 #include "printtext.h"
 
@@ -281,6 +283,7 @@ static GList *list_add_file(GList *list, const char *name, const char *default_p
 
 GList *filename_complete(const char *path, const char *default_path)
 {
+#ifdef DIR
         GList *list;
 	DIR *dirp;
 	struct dirent *dp;
@@ -344,6 +347,9 @@ GList *filename_complete(const char *path, const char *default_path)
 
 	g_free_not_null(dir);
         return list;
+#else
+	return NULL;
+#endif
 }
 
 static GList *completion_get_settings(const char *key, SettingType type)
