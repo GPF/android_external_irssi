@@ -105,6 +105,7 @@ src/fe-common/core/fe-settings.c \
 src/fe-common/core/fe-windows.c \
 src/fe-common/core/formats.c \
 src/fe-common/core/hilight-text.c \
+src/fe-common/core/keyboard.c \
 src/fe-common/irc/module-formats.c \
 src/fe-common/irc/fe-common-irc.c \
 src/fe-common/irc/fe-ctcp.c \
@@ -121,7 +122,7 @@ src/fe-common/irc/fe-netjoin.c \
 src/fe-common/irc/fe-netsplit.c \
 src/fe-common/irc/fe-whois.c \
 src/fe-common/irc/irc-completion.c \
-src/fe-text/tparm.c \
+src/fe-text/tparm2.c \
 src/fe-text/gui-entry.c \
 src/fe-text/gui-expandos.c \
 src/fe-text/gui-printtext.c \
@@ -142,7 +143,7 @@ src/fe-text/terminfo-core.c \
 src/fe-text/term-terminfo.c \
 src/fe-text/textbuffer.c \
 src/fe-text/textbuffer-commands.c \
-src/fe-text/textbuffer-view.c 
+src/fe-text/textbuffer-view.c
 
 #src/fe-none/irssi.c
 
@@ -164,6 +165,7 @@ LOCAL_C_INCLUDES += $(LOCAL_PATH)/src/fe-text
 
 #LOCAL_C_INCLUDES += $(LOCAL_PATH)/../libncurses/include
 
+LOCAL_CFLAGS += -DANDROID_STUB
 #LOCAL_CFLAGS += -DHAVE_IPV6
 LOCAL_CFLAGS += -DPACKAGE_TARNAME=\"irssi\" -DUOFF_T_INT
 LOCAL_CFLAGS += -DSYSCONFDIR=\"/etc\"
@@ -174,17 +176,19 @@ LOCAL_CFLAGS += -DIRSSI_VERSION_TIME=\"${PRIVATE_VERSION_TIME}\"
 LOCAL_CFLAGS += -DPACKAGE_VERSION=\"${PRIVATE_PACKAGE_VERSION}\"
 LOCAL_CFLAGS += -DPACKAGE_STRING\"${PRIVATE_PACKAGE_STRING}\"
 
+LOCAL_LDLIBS := -llog -L../glib/libs/armeabi/ -lglib-2.0 -lgmodule-2.0 -L../android_external_libncurses/libs/armeabi/ -lncurses
 
-
-LOCAL_STATIC_LIBRARIES := libglib_irc_static
+#LOCAL_STATIC_LIBRARIES := libglib_irc_static
 
 LOCAL_SHARED_LIBRARIES := \
 	libncurses \
         libutils \
         libcutils \
+        libglib-2.0 \
+        libgmodule-2.0 \
         libc
 
-REQUIRE_MODULE += libglib_irc_static libncurses
+REQUIRE_MODULE += libglib-2.0 libgmodule-2.0 libncurses
 
 include $(BUILD_EXECUTABLE)
 

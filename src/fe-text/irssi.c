@@ -52,8 +52,8 @@ void fe_perl_init(void);
 void fe_perl_deinit(void);
 #endif
 
-void irc_init(void);
-void irc_deinit(void);
+void irc_core_init(void);
+void irc_core_deinit(void);
 
 void fe_common_irc_init(void);
 void fe_common_irc_deinit(void);
@@ -148,7 +148,7 @@ static void textui_init(void)
 
 	irssi_gui = IRSSI_GUI_TEXT;
 	core_init();
-	irc_init();
+	irc_core_init();
 	fe_common_core_init();
 	fe_common_irc_init();
 
@@ -240,7 +240,7 @@ static void textui_deinit(void)
 
 	fe_common_irc_deinit();
 	fe_common_core_deinit();
-	irc_deinit();
+	irc_core_deinit();
 	core_deinit();
 }
 
@@ -329,9 +329,9 @@ int main(int argc, char **argv)
 	   before this call.
 
 	   locales aren't actually used for anything else than autodetection
-	   of UTF-8 currently..  
+	   of UTF-8 currently..
 
-	   furthermore to get the users's charset with g_get_charset() properly 
+	   furthermore to get the users's charset with g_get_charset() properly
 	   you have to call setlocale(LC_ALL, "") */
 	setlocale(LC_ALL, "");
 

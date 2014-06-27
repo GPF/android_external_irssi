@@ -14,5 +14,6 @@
 # limitations under the License.
 #
 ifneq ($(TARGET_SIMULATOR),true)
+LOCAL_CFLAGS += -DANDROID_STUB
   include $(all-subdir-makefiles)
 endif

@@ -1,5 +1,5 @@
 /*
- * tparm.c
+ * tparm2.c
  *
  * By Ross Ridge
  * Public Domain
@@ -43,7 +43,7 @@ static struct arg_str {
 
 static int argcnt;
 
-static va_list tparm_args;
+static va_list tparm2_args;
 
 static int pusharg(int arg)
 {
@@ -68,7 +68,7 @@ static int getarg(int argnum, int type, anyptr p)
 {
 	while (argcnt < argnum) {
 		arg_list[argcnt].type = INTEGER;
-		arg_list[argcnt++].integer = (int) va_arg(tparm_args, int);
+		arg_list[argcnt++].integer = (int) va_arg(tparm2_args, int);
 	}
 	if (argcnt > argnum) {
 		if (arg_list[argnum].type != type)
@@ -81,9 +81,9 @@ static int getarg(int argnum, int type, anyptr p)
 		arg_list[argcnt].type = type;
 		if (type == STRING)
 			*(char **)p = arg_list[argcnt++].string
-				= (char *) va_arg(tparm_args, char *);
+				= (char *) va_arg(tparm2_args, char *);
 		else
-			*(int *)p = arg_list[argcnt++].integer = (int) va_arg(tparm_args, int);
+			*(int *)p = arg_list[argcnt++].integer = (int) va_arg(tparm2_args, int);
 	}
 	return 0;
 }
@@ -224,7 +224,7 @@ static int termcap;
 
 */
 
-char *tparm(const char *str, ...) {
+char *tparm2(const char *str, ...) {
 	static char OOPS[] = "OOPS";
 	static char buf[MAX_LINE];
 	register const char *sp;
@@ -238,7 +238,7 @@ char *tparm(const char *str, ...) {
 	char fmt_buf[MAX_LINE];
 	char sbuf[MAX_LINE];
 
-	va_start(tparm_args, str);
+	va_start(tparm2_args, str);
 
 	sp = str;
 	dp = buf;
@@ -734,7 +734,7 @@ char *tparm(const char *str, ...) {
 			break;
 		}
 	}
-	va_end(tparm_args);
+	va_end(tparm2_args);
 	*dp = '\0';
 	return buf;
 }

@@ -29,8 +29,8 @@
 #include "themes.h"
 #include "fe-irc-server.h"
 
-void fe_irc_modules_init(void);
-void fe_irc_modules_deinit(void);
+//void fe_irc_modules_init(void);
+//void fe_irc_modules_deinit(void);
 
 void fe_irc_channels_init(void);
 void fe_irc_channels_deinit(void);
@@ -98,12 +98,12 @@ void fe_common_irc_init(void)
 	settings_check();
 	module_register("core", "fe-irc");
 
-	fe_irc_modules_init();
+	//fe_irc_modules_init();
 }
 
 void fe_common_irc_deinit(void)
 {
-	fe_irc_modules_deinit();
+	//fe_irc_modules_deinit();
 
 	fe_irc_channels_deinit();
 	fe_irc_queries_deinit();

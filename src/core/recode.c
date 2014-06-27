@@ -43,6 +43,7 @@ static gboolean is_translit(const char *charset)
 
 gboolean is_valid_charset(const char *charset)
 {
+	return TRUE;
 	GIConv cd;
 	char *to = NULL;
 

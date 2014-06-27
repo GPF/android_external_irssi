@@ -1,6 +1,8 @@
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
+LOCAL_CFLAGS += -DANDROID_STUB
+
 LOCAL_SRC_FILES:= \
 	gdir.c \
 	gerror.c \
@@ -40,8 +42,7 @@ LOCAL_C_INCLUDES:= \
 	$(LOCAL_PATH)/../ \
 	$(LOCAL_PATH)
 
-LOCAL_CFLAGS:= \
-	-DANDROID_STUB
+
 
 LOCAL_MODULE:=libglib_irc_static
 
